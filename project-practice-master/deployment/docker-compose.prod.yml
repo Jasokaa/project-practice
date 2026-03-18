@@ -1,0 +1,16 @@
+name: "food-store"
+
+services:
+    # Nuxt.js service
+    web:
+        container_name: "food-store-website"
+        build:
+            context: "../"
+            dockerfile: "./deployment/Dockerfile.prod"
+        restart: always
+        ports:
+            - "7809:3000"
+        env_file:
+            - ../.env
+        security_opt:
+            - apparmor:unconfined

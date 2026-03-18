@@ -1,0 +1,12 @@
+generator client {
+  provider        = "prisma-client"
+  previewFeatures = ["postgresqlExtensions"]
+  output          = "generated"
+  engineType      = "client"
+}
+
+datasource db {
+  provider   = "postgresql"
+  extensions = [postgis]
+  schemas    = ["public"]
+}

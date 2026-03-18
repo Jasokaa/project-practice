@@ -1,0 +1,16 @@
+{
+	"name": "root",
+	"version": "0.2.0",
+	"private": true,
+	"workspaces": [
+		"packages/*"
+	],
+	"devDependencies": {
+		"typescript": "^5.9.3",
+		"vite-node": "latest"
+	},
+	"packageManager": "yarn@4.13.0",
+	"engines": {
+		"node": "~24"
+	}
+}

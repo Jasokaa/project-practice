@@ -1,0 +1,15 @@
+@tailwind base;
+/* https://github.com/niklasvh/html2canvas/issues/2775 */
+@layer base {
+	img {
+		@apply inline-block;
+	}
+}
+@tailwind components;
+@tailwind utilities;
+
+picture > img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
