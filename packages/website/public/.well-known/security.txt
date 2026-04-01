@@ -1,0 +1,6 @@
+
+# bio-farm.com.ua Vulnerability Disclosure
+Contact: https://srs.s4e.io/bio-farm.com.ua/report
+Acknowledgments: https://srs.s4e.io/bio-farm.com.ua
+Preferred-Languages: en
+#s4e-verify-token: d6b06fbe87555044651e4916068b07dc

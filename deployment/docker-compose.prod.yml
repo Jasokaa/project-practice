@@ -1,0 +1,19 @@
+name: "jellylicious"
+
+services:
+    # Nuxt.js service
+    web:
+        container_name: "jellylicious-website"
+        build:
+            context: "../"
+            dockerfile: "./deployment/Dockerfile.prod"
+            args:
+                NUXT_PUBLIC_APP_ENV: ${NUXT_PUBLIC_APP_ENV:-production}
+                NUXT_PUBLIC_APP_URL: ${NUXT_PUBLIC_APP_URL:-http://localhost:3000}
+        restart: always
+        ports:
+            - "7809:3000"
+        env_file:
+            - ../.env
+        security_opt:
+            - apparmor:unconfined

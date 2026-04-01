@@ -1,0 +1,29 @@
+FROM node:current-alpine3.22 AS base
+FROM base AS build
+
+RUN yarn set version 4.13.0
+
+WORKDIR /app
+
+ARG NUXT_PUBLIC_APP_ENV=production
+ARG NUXT_PUBLIC_APP_URL=http://localhost:3000
+ENV NUXT_PUBLIC_APP_ENV=$NUXT_PUBLIC_APP_ENV
+ENV NUXT_PUBLIC_APP_URL=$NUXT_PUBLIC_APP_URL
+
+COPY package.json yarn.lock .yarnrc.yml ./
+COPY packages/website/package.json ./packages/website/
+
+RUN yarn
+
+COPY ./ /app/
+
+WORKDIR /app/packages/website
+ENV NODE_OPTIONS=--max_old_space_size=8048
+RUN yarn build
+
+FROM base
+WORKDIR /app/packages/website
+COPY --from=build --chown=node:node /app/packages/website/.output/ /app/packages/website/.output
+COPY --from=build --chown=node:node /app/deployment/run.sh /app/deployment/run.sh
+
+CMD ["sh", "/app/deployment/run.sh"]
